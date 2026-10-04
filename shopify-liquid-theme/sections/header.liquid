@@ -1,0 +1,54 @@
+<div class="announcement-bar">
+  <div class="announcement-content">
+    <div class="announcement-left">
+      <span>🌿 100% Certified Organic & Vegan</span>
+    </div>
+    <div class="announcement-text">
+      {{ section.settings.announcement_text | default: "Complimentary Express Shipping on Orders Over $75 | Code BOTANICA15" }}
+    </div>
+    <div class="announcement-right">
+      <span>{{ localization.country.currency.iso_code }} ({{ localization.country.currency.symbol }})</span>
+    </div>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="container">
+    <div class="nav-wrapper">
+      <a href="{{ routes.root_url }}" class="logo-area">
+        <span class="logo-text">{{ shop.name | default: "AURA BOTANICA" }}</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          {% for link in linklists.main-menu.links %}
+            <li><a href="{{ link.url }}" class="nav-link">{{ link.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="nav-action-btn" onclick="openCartDrawer()" aria-label="Cart">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+          </svg>
+          <span class="cart-badge">{{ cart.item_count }}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Announcement Bar Text",
+      "default": "Complimentary Express Shipping on Orders Over $75 | Code BOTANICA15"
+    }
+  ]
+}
+{% endschema %}

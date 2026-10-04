@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURA BOTANICA — Artisanal Organic Botanical Skincare</title>
+  <meta name="description" content="Handcrafted luxury skincare powered by cold-pressed florals, therapeutic herbs, and bioactive lipids. Clean, cruelty-free, sustainable luxury for timeless radiance.">
+  
+  <!-- Favicon Icon (Botanical Leaf SVG) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231F2E24'><path d='M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 0 0 8 20C19 20 22 3 22 3c-1 2-8 2-12 5-3.3 2.5-4 6-4 6s3-1 6-2c2-0.7 4-1.5 5-4z'/></svg>">
+
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       ANNOUNCEMENT BAR
+       ========================================================================== -->
+  <div class="announcement-bar">
+    <div class="announcement-content">
+      <div class="announcement-left">
+        <span>🌿 100% Certified Organic & Vegan</span>
+        <span>•</span>
+        <span>Dermatologically Tested</span>
+      </div>
+      
+      <div class="announcement-text">
+        Complimentary Express Shipping on Orders Over <span class="highlight">$75</span> | Use Code <span class="highlight">BOTANICA15</span> for 15% Off
+      </div>
+
+      <div class="announcement-right">
+        <span>Currency:</span>
+        <select id="currency-selector" class="currency-select" onchange="changeCurrency(this.value)" aria-label="Select Currency">
+          <option value="USD">USD ($)</option>
+          <option value="EUR">EUR (€)</option>
+          <option value="GBP">GBP (£)</option>
+          <option value="PKR">PKR (₨)</option>
+          <option value="CAD">CAD (C$)</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       SITE HEADER & NAVIGATION
+       ========================================================================== -->
+  <header class="site-header" id="site-header">
+    <div class="container">
+      <div class="nav-wrapper">
+        <!-- Brand Logo -->
+        <a href="#" class="logo-area" aria-label="Aura Botanica Home">
+          <svg class="logo-symbol" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+          </svg>
+          <div>
+            <span class="logo-text">AURA BOTANICA</span>
+            <span class="logo-tagline">Artisanal Apothecary</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav>
+          <ul class="nav-links">
+            <li><a href="#products" class="nav-link active">Shop Rituals</a></li>
+            <li><a href="#bundle-section" class="nav-link">Curated Sets</a></li>
+            <li><a href="#philosophy" class="nav-link">Our Philosophy</a></li>
+            <li><a href="#skin-quiz" class="nav-link">Routine Quiz</a></li>
+            <li><a href="#ingredients" class="nav-link">Botanical Actives</a></li>
+            <li><a href="#reviews" class="nav-link">Customer Love</a></li>
+          </ul>
+        </nav>
+
+        <!-- Navigation Actions -->
+        <div class="nav-actions">
+          <!-- Search Trigger -->
+          <button class="nav-action-btn" onclick="openSearchModal()" title="Search catalog" aria-label="Search">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </button>
+
+          <!-- Wishlist Trigger -->
+          <button class="nav-action-btn" onclick="showToast('Your saved favorites: ' + State.wishlist.size + ' items');" title="Wishlist" aria-label="Wishlist">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+            </svg>
+            <span class="wishlist-badge" style="display: none;">0</span>
+          </button>
+
+          <!-- Cart Drawer Trigger -->
+          <button class="nav-action-btn" onclick="openCartDrawer()" title="View Shopping Bag" aria-label="Cart">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+            </svg>
+            <span class="cart-badge" style="display: none;">0</span>
+          </button>
+
+          <!-- Mobile Hamburger -->
+          <button class="hamburger-btn" onclick="toggleMobileMenu()" aria-label="Open mobile menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       HERO EDITORIAL SECTION
+       ========================================================================== -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="hero-badge-dot"></span>
+            Cold-Pressed Botanical Potency
+          </div>
+          <h1 class="hero-title">
+            Pure Botanical Alchemy for <em>Luminous</em> Skin.
+          </h1>
+          <p class="hero-subtitle">
+            Handcrafted in small apothecary batches using wild-foraged florals, unrefined plant oils, and bioactive lipids. Clinically transformative hydration without a single drop of synthetic filler.
+          </p>
+          <div class="hero-cta-group">
+            <a href="#products" class="btn-primary">
+              <span>Shop The Collection</span>
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </a>
+            <a href="#skin-quiz" class="btn-secondary">
+              <span>Take Skin Routine Quiz</span>
+            </a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="hero-stat-item">
+              <span class="hero-stat-value">98%</span>
+              <span class="hero-stat-label">Noticeable Moisture Lock</span>
+            </div>
+            <div class="hero-stat-item">
+              <span class="hero-stat-value">100%</span>
+              <span class="hero-stat-label">Clean & Vegan Actives</span>
+            </div>
+            <div class="hero-stat-item">
+              <span class="hero-stat-value">4.9 ★</span>
+              <span class="hero-stat-label">2,400+ Verified Reviews</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-media-wrapper">
+          <div class="hero-image-frame">
+            <img src="assets/images/hero-editorial.jpg" alt="Aura Botanica Restorative Serum on marble pedestal" fetchpriority="high">
+          </div>
+          
+          <!-- Floating Editorial Pill -->
+          <div class="floating-purity-tag">
+            <span>🌸</span>
+            <span>Rose & Botanical Active Blend</span>
+          </div>
+
+          <!-- Floating Review Card -->
+          <div class="floating-review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"My complexion has never looked this plump and radiant. Aura Botanica replaced three steps in my vanity."</p>
+            <span class="reviewer-name">— Genevieve L., Verified Buyer</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       TRUST & QUALITY PROMISES
+       ========================================================================== -->
+  <section class="trust-strip">
+    <div class="container">
+      <div class="trust-grid">
+        <div class="trust-item">
+          <div class="trust-icon">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+          </div>
+          <div>
+            <h4 class="trust-item-title">100% Cold-Pressed</h4>
+            <p class="trust-item-desc">Nutrient density preserved without heat degradation.</p>
+          </div>
+        </div>
+
+        <div class="trust-item">
+          <div class="trust-icon">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+          </div>
+          <div>
+            <h4 class="trust-item-title">Dermatologist Verified</h4>
+            <p class="trust-item-desc">Formulated for delicate, reactive & sensitive skin.</p>
+          </div>
+        </div>
+
+        <div class="trust-item">
+          <div class="trust-icon">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+            </svg>
+          </div>
+          <div>
+            <h4 class="trust-item-title">Sustainable Packaging</h4>
+            <p class="trust-item-desc">Frosted UV-glass jars & natural bamboo accents.</p>
+          </div>
+        </div>
+
+        <div class="trust-item">
+          <div class="trust-icon">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+            </svg>
+          </div>
+          <div>
+            <h4 class="trust-item-title">Shopify Secure Checkout</h4>
+            <p class="trust-item-desc">256-bit encrypted payments with money-back guarantee.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       FEATURED PRODUCTS CATALOG
+       ========================================================================== -->
+  <section class="products-section" id="products">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">The Botanical Apothecary</span>
+        <h2 class="section-title">Formulations for Daily Radiance</h2>
+        <p class="section-desc">Each formula is created in small, deliberate batches with high-concentration floral water and certified therapeutic actives.</p>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="catalog-filters">
+        <button class="filter-btn active" data-category="all">All Rituals</button>
+        <button class="filter-btn" data-category="serums">Oils & Serums</button>
+        <button class="filter-btn" data-category="moisturizers">Moisturizers</button>
+        <button class="filter-btn" data-category="mists">Toning Mists</button>
+        <button class="filter-btn" data-category="bundles">Curated Bundles</button>
+      </div>
+
+      <!-- Dynamic Product Grid -->
+      <div class="products-grid" id="products-grid">
+        <!-- Rendered via JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SIGNATURE BUNDLE SPOTLIGHT
+       ========================================================================== -->
+  <section class="bundle-feature-section" id="bundle-section">
+    <div class="container">
+      <div class="bundle-grid">
+        <div class="bundle-media-box">
+          <img src="assets/images/promo-flatlay.jpg" alt="The Complete Radiance Ritual Flatlay Set">
+        </div>
+
+        <div class="bundle-content">
+          <div class="bundle-pills">
+            <span class="bundle-pill">Limited Edition</span>
+            <span class="bundle-pill">Save 20%</span>
+          </div>
+          <h2 class="bundle-title">The Complete Radiance Ritual Set</h2>
+          <p class="bundle-desc">
+            Experience the harmonious full-spectrum power of the Aura Botanica suite. Carefully sequenced to prep, treat, nourish, and seal your skin barrier with biocompatible florachemistry.
+          </p>
+
+          <ul class="bundle-includes-list">
+            <li class="bundle-includes-item">
+              <span class="bundle-check-icon">✓</span>
+              <span><strong>Restorative Botanical Serum (30ml)</strong> — Cell repair & plumping</span>
+            </li>
+            <li class="bundle-includes-item">
+              <span class="bundle-check-icon">✓</span>
+              <span><strong>Rose & Rosehip Facial Oil (30ml)</strong> — Lipid nourishment & glow</span>
+            </li>
+            <li class="bundle-includes-item">
+              <span class="bundle-check-icon">✓</span>
+              <span><strong>Hydrating Rose Face Cream (50ml)</strong> — 24H moisture barrier seal</span>
+            </li>
+            <li class="bundle-includes-item">
+              <span class="bundle-check-icon">✓</span>
+              <span><strong>Balancing Green Tea Face Mist (100ml)</strong> — Antioxidant pH reset</span>
+            </li>
+            <li class="bundle-includes-item">
+              <span class="bundle-check-icon">✓</span>
+              <span><strong>Complimentary Organic Canvas Travel Pouch</strong></span>
+            </li>
+          </ul>
+
+          <div class="bundle-price-cta-box">
+            <div class="bundle-price-left">
+              <span class="bundle-price-main">$175.00</span>
+              <span class="bundle-price-old">$218.00 (Save $43)</span>
+            </div>
+            <button class="btn-primary" style="flex-grow: 1;" onclick="addToCart('bundle-05')">
+              <span>Claim Bundle Ritual</span>
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       FOUNDER STORY & LABORATORY PHILOSOPHY
+       ========================================================================== -->
+  <section class="founder-section" id="philosophy">
+    <div class="container">
+      <div class="founder-grid">
+        <div class="founder-media-box">
+          <img src="assets/images/founder-laboratory.jpg" alt="Aura Botanica Founder formulating botanicals in laboratory">
+          <div class="founder-quote-card">
+            "Skin doesn't crave synthetics or aggressive chemicals; it responds to living plant actives formulated in biocompatible harmony."
+            <div class="founder-quote-author">— Dr. Elena Vance, Master Herbal Formulator</div>
+          </div>
+        </div>
+
+        <div class="founder-story-content">
+          <span class="section-label">Behind The Formulation</span>
+          <h2 class="founder-title">Formulation Without Compromise</h2>
+          <p class="founder-p">
+            Aura Botanica was born from a fundamental belief: that therapeutic plant chemistry can outperform conventional synthetic skincare when sourced sustainably and extracted cold.
+          </p>
+          <p class="founder-p">
+            Every bottle originates in our dedicated botanical laboratory, using heirloom Damascus roses, hand-harvested green tea leaves, and first-press cold-pressed rosehip seed oil. We never heat our ingredients above ambient room temperature, ensuring zero loss of delicate phytonutrients, polyphenols, and essential fatty acids.
+          </p>
+
+          <div class="founder-stats-grid">
+            <div>
+              <div class="f-stat-num">0%</div>
+              <div class="f-stat-txt">Fillers, silicones, synthetic dyes, or sulfates</div>
+            </div>
+            <div>
+              <div class="f-stat-num">100%</div>
+              <div class="f-stat-txt">Cruelty-free & sustainably cold-pressed</div>
+            </div>
+            <div>
+              <div class="f-stat-num">7 Days</div>
+              <div class="f-stat-txt">Average time to visible transformation in skin tone</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       INTERACTIVE SKIN ROUTINE BUILDER / QUIZ
+       ========================================================================== -->
+  <section class="quiz-section" id="skin-quiz">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Personalized Prescriptions</span>
+        <h2 class="section-title">Discover Your Botanical Regimen</h2>
+        <p class="section-desc">Take our 45-second skin diagnostic to match your skin goals with certified active botanical pairings.</p>
+      </div>
+
+      <div class="quiz-container">
+        <!-- Progress Bar -->
+        <div class="quiz-step-progress" id="quiz-step-progress">
+          <div class="quiz-progress-bar-bg"></div>
+          <div class="quiz-progress-bar-fill" id="quiz-progress-bar"></div>
+          <div class="quiz-step-indicator active" id="quiz-indicator-1">1</div>
+          <div class="quiz-step-indicator" id="quiz-indicator-2">2</div>
+          <div class="quiz-step-indicator" id="quiz-indicator-3">3</div>
+        </div>
+
+        <!-- Step 1: Skin Type -->
+        <div class="quiz-step" id="quiz-step-1">
+          <div class="quiz-question-box">
+            <h3 class="quiz-question-title">What is your primary skin type?</h3>
+            <p class="quiz-question-sub">This helps us balance moisture weights and active ingredient absorption.</p>
+            <div class="quiz-options-grid">
+              <div class="quiz-option-card selected" onclick="selectQuizOption(1, 'skinType', 'dry', this)">
+                <span class="quiz-option-icon">💧</span>
+                <div>
+                  <div class="quiz-option-title">Dry & Dehydrated</div>
+                  <div class="quiz-option-desc">Feels tight, shows dry patches, seeks supple dewiness.</div>
+                </div>
+              </div>
+              <div class="quiz-option-card" onclick="selectQuizOption(1, 'skinType', 'combination', this)">
+                <span class="quiz-option-icon">⚖️</span>
+                <div>
+                  <div class="quiz-option-title">Combination</div>
+                  <div class="quiz-option-desc">Oily T-zone with normal to dry cheek areas.</div>
+                </div>
+              </div>
+              <div class="quiz-option-card" onclick="selectQuizOption(1, 'skinType', 'sensitive', this)">
+                <span class="quiz-option-icon">🌿</span>
+                <div>
+                  <div class="quiz-option-title">Sensitive & Reactive</div>
+                  <div class="quiz-option-desc">Prone to redness, stinging, and environmental stress.</div>
+                </div>
+              </div>
+              <div class="quiz-option-card" onclick="selectQuizOption(1, 'skinType', 'oily', this)">
+                <span class="quiz-option-icon">✨</span>
+                <div>
+                  <div class="quiz-option-title">Oily & Congested</div>
+                  <div class="quiz-option-desc">Excess shine, visible pores, prefers lightweight textures.</div>
+                </div>
+              </div>
+            </div>
+            <div class="quiz-actions" style="justify-content: flex-end;">
+              <button class="btn-primary" onclick="nextQuizStep()">
+                <span>Continue</span>
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2: Main Concern -->
+        <div class="quiz-step" id="quiz-step-2" style="display: none;">
+          <div class="quiz-question-box">
+            <h3 class="quiz-question-title">What is your foremost complexion goal?</h3>
+            <p class="quiz-question-sub">Select what you would most love to transform.</p>
+            <div class="quiz-options-grid">
+              <div class="quiz-option-card selected" onclick="selectQuizOption(2, 'concern', 'glow', this)">
+                <span class="quiz-option-icon">🌟</span>
+                <div>
+                  <div class="quiz-option-title">Deep Radiance & Glow</div>
+                  <div class="quiz-option-desc">Awaken dull, fatigued skin with rich antioxidants.</div>
+                </div>
+              </div>
+              <div class="quiz-option-card" onclick="selectQuizOption(2, 'concern', 'barrier', this)">
+                <span class="quiz-option-icon">🛡️</span>
+                <div>
+                  <div class="quiz-option-title">Barrier Repair & Calming</div>
+                  <div class="quiz-option-desc">Soothe inflammation, reduce redness, and fortify.</div>
+                </div>
+              </div>
+              <div class="quiz-option-card" onclick="selectQuizOption(2, 'concern', 'aging', this)">
+                <span class="quiz-option-icon">⏳</span>
+                <div>
+                  <div class="quiz-option-title">Cellular Renewal & Firmness</div>
+                  <div class="quiz-option-desc">Plump fine lines and restore natural bounce.</div>
+                </div>
+              </div>
+              <div class="quiz-option-card" onclick="selectQuizOption(2, 'concern', 'balance', this)">
+                <span class="quiz-option-icon">🍃</span>
+                <div>
+                  <div class="quiz-option-title">Pore Clarity & Balance</div>
+                  <div class="quiz-option-desc">Refine skin texture without stripping natural oils.</div>
+                </div>
+              </div>
+            </div>
+            <div class="quiz-actions">
+              <button class="btn-secondary" onclick="prevQuizStep()">Back</button>
+              <button class="btn-primary" onclick="nextQuizStep()">
+                <span>Continue</span>
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3: Preferred Texture -->
+        <div class="quiz-step" id="quiz-step-3" style="display: none;">
+          <div class="quiz-question-box">
+            <h3 class="quiz-question-title">What finish do you desire?</h3>
+            <p class="quiz-question-sub">How do you prefer your skincare to feel on your skin?</p>
+            <div class="quiz-options-grid">
+              <div class="quiz-option-card selected" onclick="selectQuizOption(3, 'texture', 'dewy', this)">
+                <span class="quiz-option-icon">💧</span>
+                <div>
+                  <div class="quiz-option-title">Rich, Dewy & Cushioning</div>
+                  <div class="quiz-option-desc">Decadent hydration that leaves a glass-skin sheen.</div>
+                </div>
+              </div>
+              <div class="quiz-option-card" onclick="selectQuizOption(3, 'texture', 'velvet', this)">
+                <span class="quiz-option-icon">☁️</span>
+                <div>
+                  <div class="quiz-option-title">Velvety & Fast Absorbing</div>
+                  <div class="quiz-option-desc">Instant sink-in feel with zero greasy aftermath.</div>
+                </div>
+              </div>
+            </div>
+            <div class="quiz-actions">
+              <button class="btn-secondary" onclick="prevQuizStep()">Back</button>
+              <button class="btn-primary" onclick="nextQuizStep()">
+                <span>Reveal My Custom Routine</span>
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quiz Results Box -->
+        <div class="quiz-result-box" id="quiz-result-box">
+          <span class="quiz-result-badge">Custom Formulation Match</span>
+          <h3 class="quiz-result-title">Your 3-Step Radiance Protocol</h3>
+          <p class="quiz-result-desc">Based on your answers, our herbalists have assembled your ideal morning & evening regimen to rebuild lipid integrity and maximize glow.</p>
+
+          <div class="quiz-recommendations-list" id="quiz-rec-items">
+            <!-- Rendered dynamically -->
+          </div>
+
+          <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <button class="btn-primary" onclick="addFullQuizRoutineToCart()">
+              <span>Add Full Routine to Bag (15% Bundle Discount)</span>
+            </button>
+            <button class="btn-secondary" onclick="resetQuiz()">Retake Diagnostic</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       INGREDIENTS SPOTLIGHT
+       ========================================================================== -->
+  <section class="ingredients-section" id="ingredients">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Source Transparency</span>
+        <h2 class="section-title">The Active Botanical Matrix</h2>
+        <p class="section-desc">Unadulterated plant biochemistry. We display every component and its biological purpose with total clarity.</p>
+      </div>
+
+      <div class="ingredients-grid">
+        <div class="ingredient-card">
+          <div class="ingredient-icon-box">🌹</div>
+          <span class="ingredient-latin">Rosa Damascena</span>
+          <h3 class="ingredient-title">Damascus Rose Distillate</h3>
+          <p class="ingredient-desc">Steam-distilled petals deliver natural soothing anti-inflammatory polyphenols, locking in cellular water while comforting redness.</p>
+        </div>
+
+        <div class="ingredient-card">
+          <div class="ingredient-icon-box">🍇</div>
+          <span class="ingredient-latin">Rosa Canina Seed</span>
+          <h3 class="ingredient-title">Cold-Pressed Rosehip Oil</h3>
+          <p class="ingredient-desc">Packed with natural trans-retinoic acid, omegas 3 & 6, and vitamin C to encourage gentle cellular turnover and fade discoloration.</p>
+        </div>
+
+        <div class="ingredient-card">
+          <div class="ingredient-icon-box">🍵</div>
+          <span class="ingredient-latin">Camellia Sinensis</span>
+          <h3 class="ingredient-title">Green Tea Polyphenols</h3>
+          <p class="ingredient-desc">Harvested in spring shade for maximum EGCG catechins, combating blue light damage and neutralizing free radicals in skin tissue.</p>
+        </div>
+
+        <div class="ingredient-card">
+          <div class="ingredient-icon-box">🌿</div>
+          <span class="ingredient-latin">Biomimetic Squalane</span>
+          <h3 class="ingredient-title">Olive-Derived Squalane</h3>
+          <p class="ingredient-desc">An identical molecule to human sebum that prevents trans-epidermal water loss and leaves a silk finish without clogging pores.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       VERIFIED CUSTOMER REVIEWS
+       ========================================================================== -->
+  <section class="reviews-section" id="reviews">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Real Experiences</span>
+        <h2 class="section-title">Loved by Over 20,000 Complexions</h2>
+        <p class="section-desc">Unfiltered testimonials from clients who transformed their skin with our natural formulas.</p>
+      </div>
+
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="review-card-stars">★★★★★</div>
+          <h4 class="review-card-title">"Replaced every luxury serum I owned."</h4>
+          <p class="review-card-quote">
+            "I used to spend $200+ on French department store serums. The Restorative Serum from Aura Botanica calmed my hormonal flare-ups within a single week. My skin is luminous."
+          </p>
+          <div class="reviewer-footer">
+            <span class="reviewer-info-name">Sophia Montgomery</span>
+            <span class="reviewer-verified">✓ Verified Buyer</span>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-card-stars">★★★★★</div>
+          <h4 class="review-card-title">"The Rosehip Oil is liquid gold."</h4>
+          <p class="review-card-quote">
+            "Most facial oils sit on top of my face like grease. This sinks right in and leaves the most ethereal, satin finish. The amber bottle and bamboo dropper look stunning on my shelf."
+          </p>
+          <div class="reviewer-footer">
+            <span class="reviewer-info-name">Amara Khan</span>
+            <span class="reviewer-verified">✓ Verified Buyer</span>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-card-stars">★★★★★</div>
+          <h4 class="review-card-title">"The entire 4-step ritual is divine."</h4>
+          <p class="review-card-quote">
+            "I gifted myself the Radiance Set for my birthday. Smells like real fresh rose fields and herbal gardens, not artificial perfume. My makeup glides on like silk now!"
+          </p>
+          <div class="reviewer-footer">
+            <span class="reviewer-info-name">Claire DeWitt</span>
+            <span class="reviewer-verified">✓ Verified Buyer</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       NEWSLETTER VIP ACCESS
+       ========================================================================== -->
+  <section class="newsletter-section">
+    <div class="container">
+      <div class="newsletter-box">
+        <span class="newsletter-badge">The Botanical Circle</span>
+        <h2 class="newsletter-title">Receive 15% Off Your First Ritual</h2>
+        <p class="newsletter-desc">
+          Subscribe for private seasonal batch reservations, founder formulation notes, and clean skincare masterclasses delivered to your inbox.
+        </p>
+        <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+          <input type="email" class="newsletter-input" placeholder="Enter your email address..." required aria-label="Email Address">
+          <button type="submit" class="newsletter-btn">Join Circle</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="logo-area" style="margin-bottom: 0.5rem;">
+            <svg class="logo-symbol" viewBox="0 0 24 24" fill="#C2A062" style="width: 28px; height: 28px;">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+            </svg>
+            <span class="logo-text" style="color: #FFF; font-size: 1.5rem;">AURA BOTANICA</span>
+          </div>
+          <p class="footer-brand-p">
+            Small-batch botanical skincare hand-formulated with ethically wild-foraged florals, certified cold-pressed seed oils, and bioactive phytonutrients.
+          </p>
+          <div class="footer-socials">
+            <a href="#" class="social-icon-btn" aria-label="Instagram">IG</a>
+            <a href="#" class="social-icon-btn" aria-label="TikTok">TT</a>
+            <a href="#" class="social-icon-btn" aria-label="Pinterest">PI</a>
+            <a href="#" class="social-icon-btn" aria-label="Facebook">FB</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Shop Rituals</h4>
+          <ul class="footer-links">
+            <li><a href="#products">All Formulations</a></li>
+            <li><a href="#products">Restorative Serums</a></li>
+            <li><a href="#products">Facial Oils</a></li>
+            <li><a href="#products">Hydrating Creams</a></li>
+            <li><a href="#bundle-section">Curated Bundles</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">About Aura</h4>
+          <ul class="footer-links">
+            <li><a href="#philosophy">Our Philosophy</a></li>
+            <li><a href="#ingredients">Ethical Sourcing</a></li>
+            <li><a href="#skin-quiz">Skin Routine Diagnostic</a></li>
+            <li><a href="#reviews">Clinical Studies</a></li>
+            <li><a href="#">Sustainability & Glass</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Customer Care</h4>
+          <ul class="footer-links">
+            <li><a href="#" onclick="openCartDrawer(); return false;">Track Your Order</a></li>
+            <li><a href="#">Shipping & Returns</a></li>
+            <li><a href="#">Shopify Pay Protection</a></li>
+            <li><a href="#">Frequently Asked Questions</a></li>
+            <li><a href="#">Contact Concierge</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 Aura Botanica Ltd. Handcrafted with botanical purity. Powered by Shopify.
+        </div>
+        <div class="payment-icons">
+          <span class="pay-badge">Shopify Pay</span>
+          <span class="pay-badge">Apple Pay</span>
+          <span class="pay-badge">Google Pay</span>
+          <span class="pay-badge">Visa</span>
+          <span class="pay-badge">Mastercard</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       SLIDE-OUT CART DRAWER (Shopify Standard Ajax Cart)
+       ========================================================================== -->
+  <aside class="cart-drawer" id="cart-drawer" aria-label="Shopping Cart">
+    <div class="cart-header">
+      <div class="cart-title-row">
+        <h3 class="cart-title">Your Shopping Bag</h3>
+        <span class="cart-items-count" id="cart-items-count">0 items</span>
+      </div>
+      <button class="drawer-close-btn" onclick="closeCartDrawer()" aria-label="Close cart">✕</button>
+    </div>
+
+    <!-- Free Shipping Progress Bar -->
+    <div class="shipping-meter-box">
+      <div class="shipping-meter-text" id="shipping-meter-text">
+        Add <span>$75.00</span> more to unlock <strong>FREE Express Shipping</strong>
+      </div>
+      <div class="shipping-progress-bg">
+        <div class="shipping-progress-fill" id="shipping-progress-fill"></div>
+      </div>
+    </div>
+
+    <!-- Cart Items Body -->
+    <div class="cart-body" id="cart-items-body">
+      <!-- Injected via JavaScript -->
+    </div>
+
+    <!-- Cart Footer with Checkout -->
+    <div class="cart-footer">
+      <div class="cart-subtotal-row">
+        <span class="cart-subtotal-label">Subtotal</span>
+        <span class="cart-subtotal-amount" id="cart-subtotal-amount">$0.00</span>
+      </div>
+      <p class="cart-taxes-note">Shipping & taxes calculated dynamically at Shopify checkout.</p>
+      <button class="btn-checkout" id="btn-cart-checkout" onclick="openCheckoutModal()">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+        </svg>
+        <span>Proceed to Checkout</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ==========================================================================
+       QUICK VIEW PRODUCT MODAL
+       ========================================================================== -->
+  <div class="quick-view-modal" id="quick-view-modal" role="dialog" aria-modal="true">
+    <!-- Populated by JavaScript -->
+  </div>
+
+  <!-- ==========================================================================
+       LIVE SEARCH MODAL
+       ========================================================================== -->
+  <div class="search-modal" id="search-modal">
+    <div class="search-inner">
+      <button class="drawer-close-btn" onclick="closeSearchModal()" style="position: absolute; right: 0; top: 0;" aria-label="Close search">✕</button>
+      <div class="search-input-box">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+        <input type="text" id="search-input" placeholder="Search by botanical active, skin concern, or ritual..." oninput="handleSearch(this.value)">
+      </div>
+      <div class="search-results-box" id="search-results"></div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       SIMULATED SHOPIFY CHECKOUT MODAL
+       ========================================================================== -->
+  <div class="checkout-modal" id="checkout-modal" role="dialog" aria-modal="true">
+    <button class="modal-close-btn" onclick="closeCheckoutModal()" aria-label="Close checkout">✕</button>
+    <div class="checkout-badge-row">
+      <span class="shopify-secure-badge">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+        </svg>
+        Shopify Secure Checkout
+      </span>
+      <span style="font-size: 0.78rem; color: var(--color-text-muted);">256-Bit SSL Encrypted</span>
+    </div>
+
+    <h3 class="checkout-title">Express Checkout</h3>
+    <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Complete your order seamlessly with Shopify Pay or Card.</p>
+
+    <div class="checkout-summary-box" id="checkout-summary-box">
+      <!-- Calculated and populated by JS -->
+    </div>
+
+    <form onsubmit="completeCheckoutOrder(event)">
+      <div class="checkout-form-grid">
+        <input type="text" class="checkout-input" placeholder="First Name" required>
+        <input type="text" class="checkout-input" placeholder="Last Name" required>
+      </div>
+      <div class="checkout-form-grid">
+        <input type="email" class="checkout-input" placeholder="Email Address for Tracking" required style="grid-column: span 2;">
+      </div>
+      <div class="checkout-form-grid">
+        <input type="text" class="checkout-input" placeholder="Shipping Address" required style="grid-column: span 2;">
+      </div>
+      <div class="checkout-form-grid">
+        <input type="text" class="checkout-input" placeholder="City" required>
+        <input type="text" class="checkout-input" placeholder="Postal Code" required>
+      </div>
+
+      <button type="submit" class="checkout-btn-pay">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        </svg>
+        Pay Now & Place Order
+      </button>
+    </form>
+  </div>
+
+  <!-- ==========================================================================
+       MOBILE NAVIGATION DRAWER
+       ========================================================================== -->
+  <aside class="mobile-nav-drawer" id="mobile-nav-drawer">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span class="logo-text" style="font-size: 1.4rem;">AURA BOTANICA</span>
+      <button class="drawer-close-btn" onclick="toggleMobileMenu()">✕</button>
+    </div>
+    <ul class="mobile-nav-links">
+      <li><a href="#products" onclick="toggleMobileMenu()">Shop Rituals</a></li>
+      <li><a href="#bundle-section" onclick="toggleMobileMenu()">Curated Bundles</a></li>
+      <li><a href="#philosophy" onclick="toggleMobileMenu()">Our Philosophy</a></li>
+      <li><a href="#skin-quiz" onclick="toggleMobileMenu()">Routine Quiz</a></li>
+      <li><a href="#ingredients" onclick="toggleMobileMenu()">Active Ingredients</a></li>
+      <li><a href="#reviews" onclick="toggleMobileMenu()">Verified Reviews</a></li>
+    </ul>
+    <div style="margin-top: auto; padding-top: 1.5rem; border-top: 1px solid var(--color-border);">
+      <button class="btn-primary" style="width: 100%;" onclick="toggleMobileMenu(); openCartDrawer();">
+        View Shopping Bag
+      </button>
+    </div>
+  </aside>
+
+  <!-- Global Backdrop -->
+  <div class="modal-backdrop" id="modal-backdrop"></div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Main JavaScript File -->
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

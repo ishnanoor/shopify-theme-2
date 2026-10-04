@@ -1,0 +1,33 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Aura Botanica Luxury Theme",
+    "theme_version": "1.0.0",
+    "theme_author": "Antigravity Studio",
+    "theme_documentation_url": "https://aurabotanica.com",
+    "theme_support_url": "https://aurabotanica.com/support"
+  },
+  {
+    "name": "Colors & Typography",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_primary",
+        "label": "Primary Forest Accent",
+        "default": "#1F2E24"
+      },
+      {
+        "type": "color",
+        "id": "color_terracotta",
+        "label": "Terracotta Accent",
+        "default": "#C67D5A"
+      },
+      {
+        "type": "color",
+        "id": "color_gold",
+        "label": "Gold Accent",
+        "default": "#C2A062"
+      }
+    ]
+  }
+]

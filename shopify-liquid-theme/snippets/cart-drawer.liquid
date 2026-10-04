@@ -1,0 +1,33 @@
+<aside class="cart-drawer" id="cart-drawer" aria-label="Shopping Cart">
+  <div class="cart-header">
+    <div class="cart-title-row">
+      <h3 class="cart-title">Your Shopping Bag</h3>
+      <span class="cart-items-count" id="cart-items-count">{{ cart.item_count }} items</span>
+    </div>
+    <button class="drawer-close-btn" onclick="closeCartDrawer()" aria-label="Close cart">✕</button>
+  </div>
+
+  <div class="shipping-meter-box">
+    <div class="shipping-meter-text" id="shipping-meter-text">
+      Add <span>$75.00</span> more to unlock <strong>FREE Express Shipping</strong>
+    </div>
+    <div class="shipping-progress-bg">
+      <div class="shipping-progress-fill" id="shipping-progress-fill"></div>
+    </div>
+  </div>
+
+  <div class="cart-body" id="cart-items-body">
+    <!-- Populated by JavaScript or Liquid Cart Object -->
+  </div>
+
+  <div class="cart-footer">
+    <div class="cart-subtotal-row">
+      <span class="cart-subtotal-label">Subtotal</span>
+      <span class="cart-subtotal-amount" id="cart-subtotal-amount">{{ cart.total_price | money }}</span>
+    </div>
+    <p class="cart-taxes-note">Shipping & taxes calculated dynamically at Shopify checkout.</p>
+    <a href="/checkout" class="btn-checkout">
+      <span>Proceed to Checkout</span>
+    </a>
+  </div>
+</aside>
