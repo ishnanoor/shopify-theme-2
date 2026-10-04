@@ -3,6 +3,14 @@
  * Interactive Shopify Storefront Core Application
  */
 
+// --- Asset Resolver for Shopify & Local Environments ---
+function getAsset(name, fallbackPath) {
+  if (typeof window !== "undefined" && window.AURA_ASSETS && window.AURA_ASSETS[name]) {
+    return window.AURA_ASSETS[name];
+  }
+  return fallbackPath;
+}
+
 // --- Product Catalog Database ---
 const PRODUCTS = [
   {
@@ -18,7 +26,7 @@ const PRODUCTS = [
     badgeType: "bestseller",
     rating: 4.9,
     reviewsCount: 342,
-    image: "assets/images/hero-editorial.jpg",
+    get image() { return getAsset("heroEditorial", "assets/hero-editorial.jpg"); },
     actives: "Rose Damascena • Botanical Squalane • Niacinamide",
     description: "An elixir of pure cold-pressed organic botanicals formulated to restore skin barrier density, visibly reverse dehydration, and awaken an undeniable lit-from-within glow.",
     skinTypes: ["dry", "combination", "sensitive", "mature"],
@@ -42,7 +50,7 @@ const PRODUCTS = [
     badgeType: "award",
     rating: 4.95,
     reviewsCount: 218,
-    image: "assets/images/rosehip-oil.jpg",
+    get image() { return getAsset("rosehipOil", "assets/rosehip-oil.jpg"); },
     actives: "Rosa Canina Seed • Jojoba Gold • Vitamin E",
     description: "A silky, fast-absorbing botanical nectar that seals in potent hydration, neutralizes free radicals, and delivers an instant luminous satin finish without greasiness.",
     skinTypes: ["dry", "combination", "normal"],
@@ -66,7 +74,7 @@ const PRODUCTS = [
     badgeType: "sale",
     rating: 4.88,
     reviewsCount: 189,
-    image: "assets/images/rose-cream.jpg",
+    get image() { return getAsset("roseCream", "assets/rose-cream.jpg"); },
     actives: "Rosehip Oil • Organic Aloe • Shea Butter",
     description: "An artisan whipped cream infused with cold-pressed rosehip and bio-fermented aloe vera. Melts instantly onto skin to lock in 24-hour dewiness and calm redness.",
     skinTypes: ["dry", "sensitive", "normal"],
@@ -90,7 +98,7 @@ const PRODUCTS = [
     badgeType: "bestseller",
     rating: 4.85,
     reviewsCount: 147,
-    image: "assets/images/green-tea-mist.jpg",
+    get image() { return getAsset("greenTeaMist", "assets/green-tea-mist.jpg"); },
     actives: "Green Tea Polyphenols • Botanical Hyaluronan",
     description: "A micro-fine refreshing mist powered by shaded organic green tea leaves and botanical humectants. Instantly resets pH balance, refines pores, and revives tired skin.",
     skinTypes: ["oily", "combination", "sensitive", "acne-prone"],
@@ -114,7 +122,7 @@ const PRODUCTS = [
     badgeType: "sale",
     rating: 5.0,
     reviewsCount: 420,
-    image: "assets/images/promo-flatlay.jpg",
+    get image() { return getAsset("promoFlatlay", "assets/promo-flatlay.jpg"); },
     actives: "Full Spectrum Botanical Synergy",
     description: "The complete artisanal collection in full sizes: Restorative Serum, Rosehip Oil, Hydrating Rose Cream, and Green Tea Mist, packaged in our keepsake organic cotton pouch.",
     skinTypes: ["all", "dry", "combination", "sensitive"],
@@ -366,7 +374,7 @@ function updateCartUI() {
           <div class="cart-upsell">
             <div class="cart-upsell-header">Frequently Paired Together</div>
             <div class="cart-upsell-item">
-              <img src="assets/images/green-tea-mist.jpg" alt="Mist" class="cart-upsell-img">
+              <img src="${getAsset('greenTeaMist', 'assets/green-tea-mist.jpg')}" alt="Mist" class="cart-upsell-img">
               <div class="cart-upsell-details">
                 <div class="cart-upsell-title">Balancing Green Tea Mist</div>
                 <div class="cart-upsell-price">${formatPrice(38.00)}</div>

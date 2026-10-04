@@ -37,9 +37,94 @@
 
     {% render 'cart-drawer' %}
 
+    <!-- Quick View Modal -->
+    <div class="quick-view-modal" id="quick-view-modal" role="dialog" aria-modal="true"></div>
+
+    <!-- Live Search Modal -->
+    <div class="search-modal" id="search-modal">
+      <div class="search-inner">
+        <button class="drawer-close-btn" onclick="closeSearchModal()" style="position: absolute; right: 0; top: 0;" aria-label="Close search">✕</button>
+        <div class="search-input-box">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          <input type="text" id="search-input" placeholder="Search by botanical active, skin concern, or ritual..." oninput="handleSearch(this.value)">
+        </div>
+        <div class="search-results-box" id="search-results"></div>
+      </div>
+    </div>
+
+    <!-- Simulated Shopify Checkout Modal -->
+    <div class="checkout-modal" id="checkout-modal" role="dialog" aria-modal="true">
+      <button class="modal-close-btn" onclick="closeCheckoutModal()" aria-label="Close checkout">✕</button>
+      <div class="checkout-badge-row">
+        <span class="shopify-secure-badge">
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+          </svg>
+          Shopify Secure Checkout
+        </span>
+        <span style="font-size: 0.78rem; color: var(--color-text-muted);">256-Bit SSL Encrypted</span>
+      </div>
+      <h3 class="checkout-title">Express Checkout</h3>
+      <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1rem;">Complete your order seamlessly with Shopify Pay or Card.</p>
+      <div class="checkout-summary-box" id="checkout-summary-box"></div>
+      <form onsubmit="completeCheckoutOrder(event)">
+        <div class="checkout-form-grid">
+          <input type="text" class="checkout-input" placeholder="First Name" required>
+          <input type="text" class="checkout-input" placeholder="Last Name" required>
+        </div>
+        <div class="checkout-form-grid">
+          <input type="email" class="checkout-input" placeholder="Email Address for Tracking" required style="grid-column: span 2;">
+        </div>
+        <div class="checkout-form-grid">
+          <input type="text" class="checkout-input" placeholder="Shipping Address" required style="grid-column: span 2;">
+        </div>
+        <div class="checkout-form-grid">
+          <input type="text" class="checkout-input" placeholder="City" required>
+          <input type="text" class="checkout-input" placeholder="Postal Code" required>
+        </div>
+        <button type="submit" class="checkout-btn-pay">
+          Pay Now & Place Order
+        </button>
+      </form>
+    </div>
+
+    <!-- Mobile Nav Drawer -->
+    <aside class="mobile-nav-drawer" id="mobile-nav-drawer">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="logo-text" style="font-size: 1.4rem;">AURA BOTANICA</span>
+        <button class="drawer-close-btn" onclick="toggleMobileMenu()">✕</button>
+      </div>
+      <ul class="mobile-nav-links">
+        <li><a href="#products" onclick="toggleMobileMenu()">Shop Rituals</a></li>
+        <li><a href="#bundle-section" onclick="toggleMobileMenu()">Curated Bundles</a></li>
+        <li><a href="#philosophy" onclick="toggleMobileMenu()">Our Philosophy</a></li>
+        <li><a href="#skin-quiz" onclick="toggleMobileMenu()">Routine Quiz</a></li>
+        <li><a href="#ingredients" onclick="toggleMobileMenu()">Active Ingredients</a></li>
+        <li><a href="#reviews" onclick="toggleMobileMenu()">Verified Reviews</a></li>
+      </ul>
+      <div style="margin-top: auto; padding-top: 1.5rem; border-top: 1px solid var(--color-border);">
+        <button class="btn-primary" style="width: 100%;" onclick="toggleMobileMenu(); openCartDrawer();">
+          View Shopping Bag
+        </button>
+      </div>
+    </aside>
+
     <div class="modal-backdrop" id="modal-backdrop"></div>
     <div class="toast-container" id="toast-container"></div>
 
+    <!-- Shopify CDN Asset Mapper for JavaScript -->
+    <script>
+      window.AURA_ASSETS = {
+        heroEditorial: "{{ 'hero-editorial.jpg' | asset_url }}",
+        founderLab: "{{ 'founder-laboratory.jpg' | asset_url }}",
+        promoFlatlay: "{{ 'promo-flatlay.jpg' | asset_url }}",
+        rosehipOil: "{{ 'rosehip-oil.jpg' | asset_url }}",
+        roseCream: "{{ 'rose-cream.jpg' | asset_url }}",
+        greenTeaMist: "{{ 'green-tea-mist.jpg' | asset_url }}"
+      };
+    </script>
     <script src="{{ 'main.js' | asset_url }}" defer></script>
   </body>
 </html>
