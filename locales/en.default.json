@@ -1,0 +1,17 @@
+{
+  "general": {
+    "skip_to_content": "Skip to content",
+    "search": "Search our store"
+  },
+  "cart": {
+    "title": "Your Shopping Bag",
+    "empty": "Your bag is currently empty",
+    "subtotal": "Subtotal",
+    "checkout": "Proceed to Checkout"
+  },
+  "products": {
+    "add_to_cart": "Add to Bag",
+    "sold_out": "Sold Out",
+    "sale": "Sale"
+  }
+}

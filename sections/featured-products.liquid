@@ -1,0 +1,28 @@
+<section class="products-section" id="products">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">The Botanical Apothecary</span>
+      <h2 class="section-title">Formulations for Daily Radiance</h2>
+      <p class="section-desc">Each formula is created in small, deliberate batches with high-concentration floral water and certified therapeutic actives.</p>
+    </div>
+
+    <div class="catalog-filters">
+      <button class="filter-btn active" data-category="all">All Rituals</button>
+      <button class="filter-btn" data-category="serums">Oils & Serums</button>
+      <button class="filter-btn" data-category="moisturizers">Moisturizers</button>
+      <button class="filter-btn" data-category="mists">Toning Mists</button>
+      <button class="filter-btn" data-category="bundles">Curated Bundles</button>
+    </div>
+
+    <div class="products-grid" id="products-grid">
+      <!-- Rendered dynamically -->
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured Products",
+  "settings": []
+}
+{% endschema %}

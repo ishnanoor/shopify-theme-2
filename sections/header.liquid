@@ -1,0 +1,86 @@
+<div class="announcement-bar">
+  <div class="announcement-content">
+    <div class="announcement-left">
+      <span>🌿 100% Certified Organic & Vegan</span>
+      <span>•</span>
+      <span>Dermatologically Tested</span>
+    </div>
+    
+    <div class="announcement-text">
+      {{ section.settings.announcement_text | default: "Complimentary Express Shipping on Orders Over $75 | Code BOTANICA15" }}
+    </div>
+
+    <div class="announcement-right">
+      <span>Currency:</span>
+      <select id="currency-selector" class="currency-select" onchange="changeCurrency(this.value)" aria-label="Select Currency">
+        <option value="USD">USD ($)</option>
+        <option value="EUR">EUR (€)</option>
+        <option value="GBP">GBP (£)</option>
+        <option value="PKR">PKR (₨)</option>
+        <option value="CAD">CAD (C$)</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<header class="site-header" id="site-header">
+  <div class="container">
+    <div class="nav-wrapper">
+      <a href="{{ routes.root_url }}" class="logo-area" aria-label="Aura Botanica Home">
+        <svg class="logo-symbol" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+        </svg>
+        <div>
+          <span class="logo-text">{{ shop.name | default: "AURA BOTANICA" }}</span>
+          <span class="logo-tagline">Artisanal Apothecary</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          {%- if linklists.main-menu.links.size > 0 -%}
+            {%- for link in linklists.main-menu.links -%}
+              <li><a href="{{ link.url }}" class="nav-link">{{ link.title }}</a></li>
+            {%- endfor -%}
+          {%- else -%}
+            <li><a href="#products" class="nav-link active">Shop Rituals</a></li>
+            <li><a href="#bundle-section" class="nav-link">Curated Sets</a></li>
+            <li><a href="#philosophy" class="nav-link">Our Philosophy</a></li>
+            <li><a href="#skin-quiz" class="nav-link">Routine Quiz</a></li>
+            <li><a href="#ingredients" class="nav-link">Botanical Actives</a></li>
+            <li><a href="#reviews" class="nav-link">Customer Love</a></li>
+          {%- endif -%}
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="nav-action-btn" onclick="openSearchModal()" title="Search catalog" aria-label="Search">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </button>
+
+        <button class="nav-action-btn" onclick="openCartDrawer()" title="View Shopping Bag" aria-label="Cart">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+          </svg>
+          <span class="cart-badge">{{ cart.item_count }}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Announcement Text",
+      "default": "Complimentary Express Shipping on Orders Over $75 | Code BOTANICA15"
+    }
+  ]
+}
+{% endschema %}

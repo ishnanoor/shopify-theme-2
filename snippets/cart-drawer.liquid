@@ -16,9 +16,7 @@
     </div>
   </div>
 
-  <div class="cart-body" id="cart-items-body">
-    <!-- Populated by JavaScript or Liquid Cart Object -->
-  </div>
+  <div class="cart-body" id="cart-items-body"></div>
 
   <div class="cart-footer">
     <div class="cart-subtotal-row">
@@ -26,7 +24,10 @@
       <span class="cart-subtotal-amount" id="cart-subtotal-amount">{{ cart.total_price | money }}</span>
     </div>
     <p class="cart-taxes-note">Shipping & taxes calculated dynamically at Shopify checkout.</p>
-    <a href="/checkout" class="btn-checkout">
+    <a href="{{ routes.cart_url | append: '/checkout' }}" class="btn-checkout">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+      </svg>
       <span>Proceed to Checkout</span>
     </a>
   </div>

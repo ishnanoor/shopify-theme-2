@@ -1,0 +1,35 @@
+<div class="container" style="padding: 4rem 1.5rem;">
+  <div class="quick-view-content" style="background: #FFF; border-radius: 16px; border: 1px solid var(--color-border); overflow: hidden;">
+    <div class="modal-image-col">
+      {%- if product.featured_image -%}
+        <img src="{{ product.featured_image | image_url: width: 800 }}" alt="{{ product.title }}" class="modal-main-img">
+      {%- else -%}
+        <img src="{{ 'hero-editorial.jpg' | asset_url }}" alt="{{ product.title }}" class="modal-main-img">
+      {%- endif -%}
+    </div>
+    <div class="modal-details-col">
+      <span class="modal-tag">{{ product.type }}</span>
+      <h1 class="modal-title">{{ product.title }}</h1>
+      <div class="modal-price-box">
+        <span class="modal-price-now">{{ product.price | money }}</span>
+        {%- if product.compare_at_price > product.price -%}
+          <span class="modal-price-was">{{ product.compare_at_price | money }}</span>
+        {%- endif -%}
+      </div>
+      <div class="modal-desc">{{ product.description }}</div>
+      {% form 'product', product %}
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        <button type="submit" class="btn-primary" style="width: 100%; margin-top: 1rem;">
+          {{ 'products.add_to_cart' | t | default: 'Add to Bag' }}
+        </button>
+      {% endform %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Main Product",
+  "settings": []
+}
+{% endschema %}

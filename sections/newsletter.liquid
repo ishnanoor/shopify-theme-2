@@ -1,0 +1,36 @@
+<section class="newsletter-section">
+  <div class="container">
+    <div class="newsletter-box">
+      <span class="newsletter-badge">The Botanical Circle</span>
+      <h2 class="newsletter-title">{{ section.settings.title | default: "Receive 15% Off Your First Ritual" }}</h2>
+      <p class="newsletter-desc">
+        {{ section.settings.desc | default: "Subscribe for private seasonal batch reservations, founder formulation notes, and clean skincare masterclasses delivered to your inbox." }}
+      </p>
+      {% form 'customer', class: 'newsletter-form' %}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <input type="email" name="contact[email]" class="newsletter-input" placeholder="Enter your email address..." required aria-label="Email Address">
+        <button type="submit" class="newsletter-btn">Join Circle</button>
+      {% endform %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Receive 15% Off Your First Ritual"
+    },
+    {
+      "type": "textarea",
+      "id": "desc",
+      "label": "Description",
+      "default": "Subscribe for private seasonal batch reservations and formulation notes."
+    }
+  ]
+}
+{% endschema %}

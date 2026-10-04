@@ -1,0 +1,38 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-banner"
+    },
+    "featured": {
+      "type": "featured-products"
+    },
+    "bundle": {
+      "type": "bundle-spotlight"
+    },
+    "founder": {
+      "type": "founder-story"
+    },
+    "quiz": {
+      "type": "routine-quiz"
+    },
+    "ingredients": {
+      "type": "ingredients-matrix"
+    },
+    "reviews": {
+      "type": "customer-reviews"
+    },
+    "newsletter": {
+      "type": "newsletter"
+    }
+  },
+  "order": [
+    "hero",
+    "featured",
+    "bundle",
+    "founder",
+    "quiz",
+    "ingredients",
+    "reviews",
+    "newsletter"
+  ]
+}

@@ -1,0 +1,85 @@
+<section class="hero-section">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          {{ section.settings.badge_text | default: "Cold-Pressed Botanical Potency" }}
+        </div>
+        <h1 class="hero-title">
+          {{ section.settings.title | default: "Pure Botanical Alchemy for <em>Luminous</em> Skin." }}
+        </h1>
+        <p class="hero-subtitle">
+          {{ section.settings.subtitle | default: "Handcrafted in small apothecary batches using wild-foraged florals, unrefined plant oils, and bioactive lipids. Clinically transformative hydration without a single drop of synthetic filler." }}
+        </p>
+        <div class="hero-cta-group">
+          <a href="#products" class="btn-primary">
+            <span>Shop The Collection</span>
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+          <a href="#skin-quiz" class="btn-secondary">
+            <span>Take Skin Routine Quiz</span>
+          </a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="hero-stat-item">
+            <span class="hero-stat-value">98%</span>
+            <span class="hero-stat-label">Noticeable Moisture Lock</span>
+          </div>
+          <div class="hero-stat-item">
+            <span class="hero-stat-value">100%</span>
+            <span class="hero-stat-label">Clean & Vegan Actives</span>
+          </div>
+          <div class="hero-stat-item">
+            <span class="hero-stat-value">4.9 ★</span>
+            <span class="hero-stat-label">2,400+ Verified Reviews</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-media-wrapper">
+        <div class="hero-image-frame">
+          <img src="{{ 'hero-editorial.jpg' | asset_url }}" alt="Aura Botanica Serum" fetchpriority="high">
+        </div>
+        <div class="floating-purity-tag">
+          <span>🌸</span>
+          <span>Rose & Botanical Active Blend</span>
+        </div>
+        <div class="floating-review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"My complexion has never looked this plump and radiant. Aura Botanica replaced three steps in my vanity."</p>
+          <span class="reviewer-name">— Genevieve L., Verified Buyer</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge Text",
+      "default": "Cold-Pressed Botanical Potency"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Pure Botanical Alchemy for <em>Luminous</em> Skin."
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Handcrafted in small apothecary batches using wild-foraged florals, unrefined plant oils, and bioactive lipids."
+    }
+  ]
+}
+{% endschema %}

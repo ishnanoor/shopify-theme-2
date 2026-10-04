@@ -1,0 +1,66 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="logo-area" style="margin-bottom: 0.5rem;">
+          <svg class="logo-symbol" viewBox="0 0 24 24" fill="#C2A062" style="width: 28px; height: 28px;">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+          </svg>
+          <span class="logo-text" style="color: #FFF; font-size: 1.5rem;">{{ shop.name | default: "AURA BOTANICA" }}</span>
+        </div>
+        <p class="footer-brand-p">
+          Small-batch botanical skincare hand-formulated with ethically wild-foraged florals, certified cold-pressed seed oils, and bioactive phytonutrients.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="footer-col-title">Shop Rituals</h4>
+        <ul class="footer-links">
+          <li><a href="#products">All Formulations</a></li>
+          <li><a href="#products">Restorative Serums</a></li>
+          <li><a href="#products">Facial Oils</a></li>
+          <li><a href="#products">Hydrating Creams</a></li>
+          <li><a href="#bundle-section">Curated Bundles</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-col-title">About Aura</h4>
+        <ul class="footer-links">
+          <li><a href="#philosophy">Our Philosophy</a></li>
+          <li><a href="#ingredients">Ethical Sourcing</a></li>
+          <li><a href="#skin-quiz">Skin Routine Diagnostic</a></li>
+          <li><a href="#reviews">Clinical Studies</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-col-title">Customer Care</h4>
+        <ul class="footer-links">
+          <li><a href="#" onclick="openCartDrawer(); return false;">Track Your Order</a></li>
+          <li><a href="#">Shipping & Returns</a></li>
+          <li><a href="#">Shopify Pay Protection</a></li>
+          <li><a href="#">Frequently Asked Questions</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>&copy; {{ 'now' | date: "%Y" }} {{ shop.name | default: "Aura Botanica Ltd" }}. Powered by Shopify.</div>
+      <div class="payment-icons">
+        <span class="pay-badge">Shopify Pay</span>
+        <span class="pay-badge">Apple Pay</span>
+        <span class="pay-badge">Google Pay</span>
+        <span class="pay-badge">Visa</span>
+        <span class="pay-badge">Mastercard</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": []
+}
+{% endschema %}
